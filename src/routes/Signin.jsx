@@ -25,7 +25,7 @@ const Signin = () => {
       // Assuming successful login results in a response with a token or success flag
       if (response.data.success) {
         // Redirect to the dashboard after successful login
-        history.push("/dashboard");
+        history("/dashboard");
       } else {
         // Handle unsuccessful login here
         console.log("Login failed");

@@ -1,41 +1,57 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { useSelector, useDispatch } from 'react-redux';
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+ 
 
-  const handleSignUp = async () => {
-    try {
-      const response = await fetch(
-        "https://agrolux.onrender.com/api/user/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ fullName, email, password }),
+
+  
+    const handleSignUp = async () => {
+      try {
+        const response = await fetch(
+          "https://agrolux.onrender.com/api/user/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ fullName, email, password }),
+          }
+        );
+  
+        if (response.ok) {
+          const userData = await response.json();
+      const userId = userData.userId; 
+      // dispatch(setUser(userId));
+
+      // Handle success - redirect to verify page with user ID
+      console.log("User signed up successfully with ID:", userId);
+          // Handle success - redirect to login after sign-up
+          console.log("User signed up successfully!");
+          // Redirecting to the login page
+          navigate(`/verify/${userId}`);
+        } else {
+          // Handle error (e.g., show error message to the user)
+          console.error("Signup failed");
         }
-      );
-
-      if (response.ok) {
-        // Handle success (e.g., redirect to a success page or perform necessary actions)
-        console.log("User signed up successfully!");
-      } else {
-        // Handle error (e.g., show error message to the user)
-        console.error("Signup failed");
+      } catch (error) {
+        console.error("Error during signup:", error);
       }
-    } catch (error) {
-      console.error("Error during signup:", error);
-    }
-  };
-
+    };
+  
+ 
   return (
     <div className="flex items-center justify-center bg-[#204E51] h-[100vh] px-[20px] max-md:px-[10px]">
       <div className="h-[70%] bg-white w-[100%] max-w-[650px]  rounded-[20px] px-[55px] py-[38px] max-md:px-[20px]">

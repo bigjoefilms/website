@@ -5,6 +5,8 @@ import Home from './routes/Home';
 import Signin from './routes/Signin';
 import Signup from './routes/Signup';
 import Dasboard from './routes/Dasboard';
+import Verify from './routes/Verify';
+import { Overview } from './routes/Overview';
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup/>} />
-        <Route path="/dasboard" element={<Dasboard/>} />
+        <Route path="/dashboard" element={<Dasboard/>} />
+        <Route path="/verify/:userId" element={<Verify/>} />
+        <Route path="/overview" element={<Overview/>} />
       </Routes>
     </BrowserRouter>
   );
