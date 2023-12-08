@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div class='bottom-0 absolute  h-[100%] w-[100%]'>
-    <div class='h-[100%] w-full bg-[#204E51] px-[150px] py-[10rem] flex justify-between max-[771px]:flex-col max-[1331px]:px-[60px]'>
+    <div class='bottom-0 absolute  w-[100%] h-[100%]'>
+    <div class=' w-full bg-[#204E51] px-[150px] py-[10rem] flex justify-between max-[771px]:flex-col max-[1331px]:px-[60px]'>
         <div className=' text-[white]'>
              <h1 className='text-[35px] font-semibold'>Agrolux</h1>
              <p className='text-[20px] font-thin'>Li Europan lingues es membres del sam <br/>familie. Lor separat existentie </p>
