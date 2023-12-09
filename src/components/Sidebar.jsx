@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <div className=" w-[342px] h-screen p-4 bg-[#204e51] border-r-[1px] flex flex-col relative">
       <div className="">
-        <Link to="/overview">
+        <Link to="/">
           <h1
             className="text-[#ffffff] font-bold text-[28px] p-[40px]
             "
@@ -25,9 +25,13 @@ const Sidebar = () => {
             <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
               Weather forecast
             </li>
+            <Link to="/plant" className="w-full">
             <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
               Plant a crop
             </li>
+
+            </Link>
+           
             <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
               Farm Planning
             </li>

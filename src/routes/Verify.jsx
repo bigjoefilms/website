@@ -23,7 +23,7 @@ const Verify = () => {
       if (response.ok) {
         console.log("Email verified successfully!");
         // Redirect the user to the dashboard upon successful verification
-        history("/dashboard");
+        history("/login");
       } else {
         console.error("Email verification failed");
       }

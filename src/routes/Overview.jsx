@@ -8,7 +8,7 @@ export const Overview = () => {
         <h1 className="text-[28px] font-medium text-[#204e51]">
           Your crops Progress
         </h1>
-        <div className="flex gap-7  justify-between max-[1126px]:grid max-[1126px]:grid max-[1126px]:grid-rows-2 max-[1126px]:grid-flow-col max-[500px]:grid-rows-4 w-full">
+        <div className="flex gap-7  justify-between max-[1126px]:grid  max-[1126px]:grid-rows-2 max-[1126px]:grid-flow-col max-[500px]:grid-rows-4 w-full">
           <div className=" bg-[#F7FFDD] h-[150px] w-full  rounded-[20px] p-[25px] mt-[25px] ">
             <p className="font-medium text-[20px]">Rice</p>
             <p className=" text-[20px] mt-[10px]">Benue State</p>
@@ -48,8 +48,8 @@ export const Overview = () => {
             <div className="text-[20px] mt-[10px]">Plant a Crop</div>
           </div>
         </div>
-        <div className="flex gap-[60px] max-lg:flex-col ">
-        <div className="bg-[#F7FFDD] h-[400px] w-[100%] max-w-[700px] mt-[50px] rounded-[20px] p-[25px]">
+        <div className="flex gap-[60px] max-lg:flex-col justify-between ">
+        <div className="bg-[#F7FFDD] h-[400px] w-[100%] max-w-[800px] mt-[50px] rounded-[20px] p-[25px]">
           <h1 className="text-[#204e51] font-bold text-[20px] ">
             Your Daily tasks
           </h1>
@@ -163,7 +163,7 @@ export const Overview = () => {
             </div>
           </div>
         </div>
-        <div className="bg-[#F7FFDD] h-[400px] w-[100%] max-w-[250px] mt-[50px] rounded-[20px] p-[25px]  ">
+        <div className="bg-[#F7FFDD] h-[400px] w-[100%] max-w-[350px] mt-[50px] rounded-[20px] p-[25px]  ">
             <h1 className="text-[#204e51] font-bold text-[20px]">Temperature/<br/>Humidity</h1>
             <div className="relative">
             <svg className="absolute right-0 top-5 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
