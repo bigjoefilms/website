@@ -60,7 +60,7 @@ const Topbar = () => {
       <div className='flex max-[780px]:flex  flex-col px-[4rem]'>
            
       <div className="mt-[40px] text-white">
-          <ul className=" flex flex-col gap-1 text-[20px] items-start text-[black] ">
+          <ul className=" flex flex-col gap-1 text-[20px] items-start text-[black] max-[700px]:text-[15px] ">
             <Link to="/overview" className="w-full ">
               <li className="cursor-pointer hover:bg-[#204e51] hover:text-white w-full h-[60px] flex items-center px-3 rounded-[10px]">
                 Overview

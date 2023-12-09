@@ -7,16 +7,21 @@ const Verify = () => {
   const history = useNavigate(); // Initialize history hook for redirection
   const { userId } = useParams();
 
+  const JWT_SECRET = 'fuegfyefgwrgty9t3ur9giht4toyogytt674'
+
   const handleVerification = async () => {
     try {
+      console.log("this:", pin)
       const response = await fetch(
+     
         `https://agrolux.onrender.com/api/user/confirm/${userId}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${JWT_SECRET}`
           },
-          body: JSON.stringify({ pin }),
+          body: JSON.stringify({pin}),
         }
       );
 

@@ -14,14 +14,21 @@ const Signin = () => {
 
   const handleLogin = async () => {
     try {
+      const userData = {
+        email: JSON.stringify(email),
+        password: JSON.stringify(password),
+      };
+  
       const response = await axios.post(
         "https://agrolux.onrender.com/api/user/login",
+        JSON.stringify(userData), // Stringify the entire userData object
         {
-          email,
-          password,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
-
+  
       // Assuming successful login results in a response with a token or success flag
       if (response.data.success) {
         // Redirect to the dashboard after successful login
