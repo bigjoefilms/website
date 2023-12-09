@@ -33,8 +33,8 @@ const Topbar = () => {
        <div
           className={`${
             showAdditionalContent
-              ? 'absolute top-0 right-0 w-[70%] bg-white h-[100%] transition-transform transform translate-x-0'
-              : 'absolute top-0 right-0 w-[70%] bg-white h-[100%] transition-transform transform translate-x-full'
+              ? 'fixed top-0 right-0 w-[70%] bg-white h-[100vh] transition-transform transform translate-x-0'
+              : 'fixed top-0 right-0 w-[70%] bg-white h-[100vh] transition-transform transform translate-x-full'
           }`}
         >
              <div className='flex justify-end p-9'>
