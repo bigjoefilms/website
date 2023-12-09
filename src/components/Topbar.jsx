@@ -92,7 +92,7 @@ const Topbar = () => {
           </ul>
         </div>
            <div className='flex gap-[2rem] md:max-lg:gap-[1rem]   max-sm:flex-col'>
-           <div className="flex text-[#ED4129] text-[20px]  cursor-pointer gap-5  absolute bottom-12 flex-col">
+           <div className="flex text-[#ED4129] text-[20px]  cursor-pointer gap-5  mt-[70px] flex-col">
           <p className="text-[20px] px-3 cursor-pointer text-black ">Profile</p>
           <div className=" flex gap-5 items-center">
             <svg
