@@ -59,7 +59,7 @@ const Topbar = () => {
 
       <div className='flex max-[780px]:flex  flex-col px-[4rem] max-[780px]:px-[2rem]'>
            
-      <div className="mt-[40px] text-white">
+      <div className="mt-[20px] text-white">
           <ul className=" flex flex-col gap-1 text-[20px] items-start text-[black] max-[700px]:text-[15px] ">
             <Link to="/overview" className="w-full ">
               <li className="cursor-pointer hover:bg-[#204e51] hover:text-white w-full h-[60px] flex items-center px-3 rounded-[10px]">
@@ -91,7 +91,7 @@ const Topbar = () => {
             </li>
           </ul>
         </div>
-           <div className='flex gap-[2rem] md:max-lg:gap-[1rem]  mt-[3rem] max-sm:flex-col'>
+           <div className='flex gap-[2rem] md:max-lg:gap-[1rem]   max-sm:flex-col'>
            <div className="flex text-[#ED4129] text-[20px]  cursor-pointer gap-5  absolute bottom-12 flex-col">
           <p className="text-[20px] px-3 cursor-pointer text-black ">Profile</p>
           <div className=" flex gap-5 items-center">
