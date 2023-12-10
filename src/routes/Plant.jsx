@@ -1,9 +1,36 @@
-import React from "react";
+import React ,{useState} from "react";
 import Dasboard from "./Dasboard";
 import DashboardLayout from "../layout/DashboardLayout";
 import Topbar from "../components/Topbar";
 
 export const Plant = () => {
+    const [temperature, setTemperature] = useState(null);
+    const [humidity, setHumidity] = useState(null);
+    const [state, setState] = useState("");
+  
+    const handleGenerate = async () => {
+        try {
+         
+       
+          const response = await fetch(`https://agrolux.onrender.com/weather?state=${state}`);
+          
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            console.log(data.temperature)
+            setTemperature(data.temperature)
+            setHumidity(data.humidity)
+          } else {
+            console.error('Failed to fetch weather data');
+          }
+        } catch (error) {
+          console.error('Error fetching weather data:', error);
+        }
+      };
+    
+    const handleLocationChange = (e) => {
+        setState(e.target.value);
+      };
   return (
     <DashboardLayout>
         <Topbar/>
@@ -25,12 +52,15 @@ export const Plant = () => {
             <input
               type="search"
               placeholder="Location"
+              value={state}
+              onChange={handleLocationChange}
               className="h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] p-[20px] border-[#204e51]"
             />
           </div>
           <div className="text-[30px] text-[#204e51] flex justify-between items-center pt-[50px] font-medium max-[1000px]:items-start max-[1000px]:flex-col">
-            <h1>Temperature :</h1>
-            <h1>Humidity :</h1>
+            <h1>Temperature :<span>{temperature} °C</span></h1>
+            <h1>Humidity :<span>{humidity} %</span></h1>
+            <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] text-[18px] " onClick={handleGenerate}>Generate</div>
           </div>
           <div className="text-[30px] text-[#204e51] flex justify-between  pt-[80px] font-medium max-[1000px]:items-start max-[1000px]:flex-col ">
             <h1>Harvest Season :</h1>
