@@ -2,6 +2,7 @@ import React ,{useState} from "react";
 import Dasboard from "./Dasboard";
 import DashboardLayout from "../layout/DashboardLayout";
 import Topbar from "../components/Topbar";
+import nigeriaStates from './nigeriaStates';
 
 
 export const Plant = () => {
@@ -9,11 +10,53 @@ export const Plant = () => {
     const [humidity, setHumidity] = useState(null);
     const [state, setState] = useState("");
     const [states, setStates] = useState(false)
+    const [selectedCrop, setSelectedCrop] = useState(""); 
+    const crops = ['Cassava', 'Cotton', 'Maize', 'Rice','Watermelon'];
 
-  
+    const handleGenerates = async () => {
+        try {
+            setStates(true)
+            // if (!selectedCrop || !state) {
+            //     console.error('Please select a crop and location');
+            //     return;
+            // }
+
+            const data = {
+                temperature: temperature, 
+                humidity: humidity, 
+                label_cassava: selectedCrop === 'Cassava' ? 1 : 0,
+                label_cotton: selectedCrop === 'Cotton' ? 1 : 0,
+                label_maize: selectedCrop === 'Maize' ? 1 : 0,
+                label_rice: selectedCrop === 'Rice' ? 1 : 0,
+                label_watermelon: selectedCrop === 'Watermelon' ? 1 : 0,
+            };
+            console.log(data)
+
+            const response = await fetch('https://agrolox-model.onrender.com/season/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Predicted season:', result);
+                // Handle the predicted season data here
+            } else {
+                console.error('Failed to predict season');
+            }
+        } catch (error) {
+            console.error('Error predicting season:', error);
+        }
+        finally{
+            setStates(false)
+          }
+    };
     const handleGenerate = async () => {
         try {
-            setStates(truegit )
+            setStates(true)
        
           const response = await fetch(`https://agrolux.onrender.com/weather?state=${state}`);
           
@@ -36,6 +79,9 @@ export const Plant = () => {
     const handleLocationChange = (e) => {
         setState(e.target.value);
       };
+      const handleCropChange = (e) => {
+        setSelectedCrop(e.target.value);
+    };
   return (
     <DashboardLayout>
         <Topbar/>
@@ -49,18 +95,33 @@ export const Plant = () => {
         </div>
         <div className="pt-[50px]">
           <div className="flex justify-between items-center max-[800px]:flex-col max-[1000px]:items-start max-[1000px]:gap-[20px] ">
-            <input
-              type="search"
-              placeholder="Crop"
-              className="h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] p-[20px] border-[#204e51]"
-            />
-            <input
-              type="search"
-              placeholder="Location"
-              value={state}
-              onChange={handleLocationChange}
-              className="h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] p-[20px] border-[#204e51]"
-            />
+          <select
+           value={selectedCrop}
+           onChange={handleCropChange}
+        className="h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] px-2  border-[#204e51]"
+        defaultValue="defaultCrop" // Set a default value if needed
+      >
+        <option value="defaultCrop" disabled hidden>
+          Select a Crop
+        </option>
+        {crops.map((crop, index) => (
+          <option key={index} value={crop}>
+            {crop}
+          </option>
+        ))}
+      </select>
+      <select
+        value={state}
+        onChange={handleLocationChange}
+        className="h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] px-2 border-[#204e51]"
+      >
+        <option value="" disabled>Select a Location</option>
+        {nigeriaStates.map((location, index) => (
+          <option key={index} value={location}>
+            {location}
+          </option>
+        ))}
+      </select>
           </div>
           <div className="text-[30px] text-[#204e51] flex justify-between items-center pt-[50px] font-medium max-[1000px]:items-start max-[1000px]:flex-col">
             <h1>Temperature :<span>{temperature} °C</span></h1>
@@ -91,7 +152,13 @@ export const Plant = () => {
           <div className="flex justify-between items-center mt-[3rem] max-[850px]:flex-col max-[1000px]:w-[100%] max-[1000px]:items-start  ">
 
          
-          <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] ">Get harvest Season</div>
+          <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] " onClick={handleGenerates}>{states ? (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  ) : (
+    "Get Harvest Season"
+  )}</div>
           <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] ">Plant a Crop</div>
           <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] ">Suggested Crops</div>
           </div>
