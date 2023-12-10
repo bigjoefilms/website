@@ -3,35 +3,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import { useParams } from "react-router-dom";
 
 export const Overview = () => {
-  const { userId } = useParams();
-  let token = {userId}
-  const fetchUserProfile = async (token) => {
-    console.log('token',token)
-    try {
-      const response = await fetch('https://agrolux.onrender.com/api/user/profile', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
   
-      if (response.ok) {
-        const userProfile = await response.json();
-        console.log('User profile:', userProfile);
-        // Process the user profile data as needed
-        return userProfile;
-      } else {
-        console.error('Failed to fetch user profile');
-        return null;
-      }
-    } catch (error) {
-      console.error('Error fetching user profile:', error);
-      return null;
-    }
-  };
-   // Replace with the actual token
-fetchUserProfile(token);
  
   return (
     <DashboardLayout>

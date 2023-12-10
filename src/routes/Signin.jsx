@@ -38,7 +38,7 @@ const Signin = () => {
       if (response.ok) {
         // Redirect to the dashboard after successful login
         console.log("User signed in successfully!");
-        history(`/overview/${userId}`);
+        history(`/dashboard/${userId}`);
       } else {
         // If response status is not OK, parse the error response
         const errorData = await response.json(); // Parse error response
