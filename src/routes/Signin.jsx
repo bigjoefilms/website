@@ -1,50 +1,75 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { CLoadingButton } from '@coreui/react-pro'
+import '../App.css'
+import { useParams } from "react-router-dom";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const JWT_SECRET = 'fuegfyefgwrgty9t3ur9giht4toyogytt674'
+  const [state, setState] = useState(false)
+  const { userId } = useParams();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
   const handleLogin = async () => {
+    
     try {
-      const userData = {
-        email: JSON.stringify(email),
-        password: JSON.stringify(password),
-      };
-  
-      const response = await axios.post(
+      setState(true);
+      const response = await fetch(
         "https://agrolux.onrender.com/api/user/login",
-        JSON.stringify(userData), // Stringify the entire userData object
         {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${JWT_SECRET}`
           },
+          body: JSON.stringify({ password ,email}),
         }
       );
-  
+    
       // Assuming successful login results in a response with a token or success flag
-      if (response.data.success) {
+      if (response.ok) {
         // Redirect to the dashboard after successful login
-        history("/overview");
+        console.log("User signed in successfully!");
+        history(`/overview/${userId}`);
       } else {
-        // Handle unsuccessful login here
-        console.log("Login failed");
+        // If response status is not OK, parse the error response
+        const errorData = await response.json(); // Parse error response
+  
+        // Check if the errorData contains specific error messages
+        if (errorData && errorData.error) {
+          console.log("Login failed:", errorData.error);
+          // Handle the error (show error message to the user, etc.)
+        } else {
+          console.log("Login failed: Unknown error");
+          // Handle unknown or unexpected errors
+        }
       }
     } catch (error) {
       // Handle errors (e.g., network issues, server errors, etc.)
       console.error("Login error:", error);
+    }finally {
+      setState(false); // Set loading state to false when login process ends
     }
   };
 
   return (
-    <div className="flex items-center justify-center bg-[#204E51] h-[100vh] px-[20px] max-md:px-[10px]">
+    <div className="flex items-center justify-center bg-[#204E51] h-[100vh] px-[20px] max-md:px-[10px] flex-col">
+      <Link to="/">
+          <h1
+            className="text-[#ffffff] font-bold text-[28px] p-[40px]
+            "
+          >
+            Agrolux
+          </h1>
+        </Link>
       <div className="h-[70%] bg-white w-[100%] max-w-[650px] rounded-[20px] px-[55px] py-[38px] max-md:px-[20px]">
         <div>
           <h1 className="text-[70px] text-[#204e51] font-semibold max-md:text-[50px]">
@@ -68,10 +93,10 @@ const Signin = () => {
             className="border border-black rounded-[20px] h-[60px] w-full px-[25px] text-[15px] text-black"
           />
         </div>
-        <div className="flex items-center justify-between font-light mt-[30px] text-[16px] max-md:text-[13px]">
+        <div className="flex items-center justify-between font-light mt-[30px] text-[16px] max-md:text-[13px] cursor-pointer" onClick={handleShowPassword}>
           <p
             className="flex gap-[8px] items-center"
-            onClick={handleShowPassword}
+           
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -92,16 +117,25 @@ const Signin = () => {
           </p>
           <p> Forgot Password</p>
         </div>
+        
         <div
           className="w-full h-[60px] rounded-[20px] text-[white] bg-[#204e51] text-[20px] flex items-center justify-center my-[15px] cursor-pointer"
           onClick={handleLogin}
         >
-          Login
+       {state ? (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  ) : (
+    "Login"
+  )}
         </div>
         <p className="text-[15px] font-light">
           Dont have an account?{" "}
           <Link to="/signup">
+         
             <span className="text-[#204e51] "> Sign Up</span>{" "}
+           
           </Link>
         </p>
       </div>

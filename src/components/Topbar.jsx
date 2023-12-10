@@ -8,7 +8,7 @@ const Topbar = () => {
     setShowAdditionalContent(!showAdditionalContent);
   };
   return (
-    <div className=" flex relative h-[81px]  text-black bg-[white]">
+    <div className=" flex  h-[81px]  text-black bg-[white]">
       <div className=" mx-2 my-1  flex z-10 justify-end w-full items-center px-[20px]">
         {/* <h1 className='text-[#204e51] text-[20px] font-semibold'>Overview</h1>
         <div className='relative'>

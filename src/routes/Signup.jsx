@@ -7,9 +7,11 @@ const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [state, setState] = useState(false)
   // const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const JWT_SECRET = 'fuegfyefgwrgty9t3ur9giht4toyogytt674'
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -20,12 +22,14 @@ const Signup = () => {
   
     const handleSignUp = async () => {
       try {
+        setState(true)
         const response = await fetch(
           "https://agrolux.onrender.com/api/user/register",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              "Authorization": `Bearer ${JWT_SECRET}`
             },
             body: JSON.stringify({ fullName, email, password }),
           }
@@ -48,16 +52,26 @@ const Signup = () => {
         }
       } catch (error) {
         console.error("Error during signup:", error);
+      }finally{
+        setState(false)
       }
     };
   
  
   return (
-    <div className="flex items-center justify-center bg-[#204E51] h-[100vh] px-[20px] max-md:px-[10px]">
+    <div className="flex items-center justify-center bg-[#204E51] h-[100vh] px-[20px] max-md:px-[10px] flex-col">
+    <Link to="/">
+        <h1
+          className="text-[#ffffff] font-bold text-[28px] p-[40px]
+          "
+        >
+          Agrolux
+        </h1>
+      </Link>
       <div className="h-[70%] bg-white w-[100%] max-w-[650px]  rounded-[20px] px-[55px] py-[38px] max-md:px-[20px]">
         <div>
           <h1 className="text-[70px] text-[#204e51] font-semibold max-md:text-[50px]">
-            Sign Up
+            Register
           </h1>
           <p className=" font-light text-[15px] ml-[10px]">Hello Welcome </p>
         </div>
@@ -85,7 +99,7 @@ const Signup = () => {
           />
         </div>
         <div className="flex items-center justify-between font-light mt-[30px]">
-          <p className="flex gap-[8px] items-center text-[16px] max-md:text-[13px]">
+          <p className="flex gap-[8px] items-center text-[16px] max-md:text-[13px] cursor-pointer" onClick={handleShowPassword}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -99,7 +113,7 @@ const Signup = () => {
                 clip-rule="evenodd"
                 d="M16.8225 6.02069L7.98362 14.8596L3.17847 10.0544L4.06235 9.17049L7.98362 13.0917L15.9385 5.13681L16.8225 6.02069Z"
                 fill="#204E51"
-                onClick={handleShowPassword}
+                
               />
             </svg>
             Show Password
@@ -109,7 +123,13 @@ const Signup = () => {
           className="w-full h-[60px] rounded-[20px] text-[white] bg-[#204e51] text-[20px] flex items-center justify-center my-[15px] cursor-pointer  max-md:text-[16px]"
           onClick={handleSignUp}
         >
-          Signup
+          {state ? (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  ) : (
+    "Register"
+  )}
         </div>
         <p className="text-[15px] font-light">
           {" "}

@@ -1,7 +1,38 @@
 import React from "react";
 import DashboardLayout from "../layout/DashboardLayout";
+import { useParams } from "react-router-dom";
 
 export const Overview = () => {
+  const { userId } = useParams();
+  let token = {userId}
+  const fetchUserProfile = async (token) => {
+    console.log('token',token)
+    try {
+      const response = await fetch('https://agrolux.onrender.com/api/user/profile', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+  
+      if (response.ok) {
+        const userProfile = await response.json();
+        console.log('User profile:', userProfile);
+        // Process the user profile data as needed
+        return userProfile;
+      } else {
+        console.error('Failed to fetch user profile');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
+    }
+  };
+   // Replace with the actual token
+fetchUserProfile(token);
+ 
   return (
     <DashboardLayout>
       <div className="p-[30px] overflow-scroll">
@@ -49,7 +80,7 @@ export const Overview = () => {
           </div>
         </div>
         <div className="flex gap-[60px] max-lg:flex-col justify-between ">
-        <div className="bg-[#F7FFDD] h-[400px] w-[100%] max-w-[800px] mt-[50px] rounded-[20px] p-[25px]">
+        <div className="bg-[#F7FFDD] h-full max-h-[600px] w-[100%] max-w-[800px] mt-[50px] rounded-[20px] p-[25px]">
           <h1 className="text-[#204e51] font-bold text-[20px] ">
             Your Daily tasks
           </h1>
@@ -80,7 +111,7 @@ export const Overview = () => {
                 Weed Control: Check for weeds and remove them
               </p>
             </div>
-            <div className="flex item-center gap-3 mt-[10px]">
+            <div className="flex item-center gap-3 mt-[5px]">
               <svg
                 width="30"
                 height="30"
@@ -104,7 +135,7 @@ export const Overview = () => {
               </p>
             </div>
             <div>
-              <p className="font-normal text-[21px] text-[#204e51] mt-[10px]">
+              <p className="font-normal text-[21px] text-[#204e51] mt-[5px]">
                 Corn
               </p>
               <div className="flex item-center gap-3 mt-[10px]">
