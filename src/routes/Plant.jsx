@@ -13,9 +13,7 @@ export const Plant = () => {
             Plant a crop
           </h1>
 
-          <div className="border h-[40px] w-[90px] text-[18px] flex items-center justify-center rounded-[15px]">
-            John
-          </div>
+         
         </div>
         <div className="pt-[50px]">
           <div className="flex justify-between items-center max-[800px]:flex-col max-[1000px]:items-start max-[1000px]:gap-[20px] ">

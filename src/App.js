@@ -14,11 +14,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login/:userId" element={<Signin />} />
+        <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/overview" element={<Dasboard/>} />
         <Route path="/verify/:userId" element={<Verify/>} />
-        <Route path="/dashboard/:userId" element={<Dasboard/>} />
+        <Route path="/dashboard" element={<Dasboard/>} />
         <Route path="/plant" element={<Plant/>} />
       </Routes>
     </BrowserRouter>
