@@ -10,6 +10,8 @@ export const Plant = () => {
     const [humidity, setHumidity] = useState(null);
     const [state, setState] = useState("");
     const [states, setStates] = useState(false)
+    const [season, setSeason] = useState(""); 
+    const [timing, setTiming] = useState(""); 
     const [selectedCrop, setSelectedCrop] = useState(""); 
     const crops = ['Cassava', 'Cotton', 'Maize', 'Rice','Watermelon'];
 
@@ -43,6 +45,8 @@ export const Plant = () => {
             if (response.ok) {
                 const result = await response.json();
                 console.log('Predicted season:', result);
+                setSeason(result.season_result);
+                setTiming(result.harvest_timing);
                 // Handle the predicted season data here
             } else {
                 console.error('Failed to predict season');
@@ -124,8 +128,8 @@ export const Plant = () => {
       </select>
           </div>
           <div className="text-[30px] text-[#204e51] flex justify-between items-center pt-[50px] font-medium max-[1000px]:items-start max-[1000px]:flex-col">
-            <h1>Temperature :<span>{temperature} °C</span></h1>
-            <h1>Humidity :<span>{humidity} %</span></h1>
+            <h1>Temperature :<span className="text-[18px]">{temperature} °C</span></h1>
+            <h1>Humidity :<span className="text-[18px]">{humidity} %</span></h1>
             <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] text-[18px] " onClick={handleGenerate}> {states ? (
     <div className="spinner-container">
       <div className="spinner"></div>
@@ -135,9 +139,9 @@ export const Plant = () => {
   )}</div>
           </div>
           <div className="text-[30px] text-[#204e51] flex justify-between  pt-[80px] font-medium max-[1000px]:items-start max-[1000px]:flex-col ">
-            <h1>Harvest Season :</h1>
+            <h1>Harvest Season :<h1 className="text-[18px]"><span>{season}</span><br/><span>{timing}</span></h1></h1>
 
-            <div className="bg-[#F7FFDD] h-auto  w-[100%] max-w-[400px] rounded-[20px] p-[35px] flex-col flex text-[25px] mt-[20px]">
+            <div className="bg-[#F7FFDD] h-auto  w-[100%] max-w-[400px] rounded-[20px] p-[35px] flex-col flex text-[25px] mt-[0px]">
               Suggested Crops
               <div className="flex items-center gap-5 mt-[20px]">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +163,7 @@ export const Plant = () => {
   ) : (
     "Get Harvest Season"
   )}</div>
-          <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] ">Plant a Crop</div>
+         
           <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] ">Suggested Crops</div>
           </div>
 
