@@ -3,14 +3,17 @@ import Dasboard from "./Dasboard";
 import DashboardLayout from "../layout/DashboardLayout";
 import Topbar from "../components/Topbar";
 
+
 export const Plant = () => {
     const [temperature, setTemperature] = useState(null);
     const [humidity, setHumidity] = useState(null);
     const [state, setState] = useState("");
+    const [states, setStates] = useState(false)
+
   
     const handleGenerate = async () => {
         try {
-         
+            setStates(truegit )
        
           const response = await fetch(`https://agrolux.onrender.com/weather?state=${state}`);
           
@@ -25,7 +28,9 @@ export const Plant = () => {
           }
         } catch (error) {
           console.error('Error fetching weather data:', error);
-        }
+        }finally{
+            setStates(false)
+          }
       };
     
     const handleLocationChange = (e) => {
@@ -60,7 +65,13 @@ export const Plant = () => {
           <div className="text-[30px] text-[#204e51] flex justify-between items-center pt-[50px] font-medium max-[1000px]:items-start max-[1000px]:flex-col">
             <h1>Temperature :<span>{temperature} °C</span></h1>
             <h1>Humidity :<span>{humidity} %</span></h1>
-            <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] text-[18px] " onClick={handleGenerate}>Generate</div>
+            <div className="bg-[#204e51] w-[100%] max-w-[230px] rounded-[20px] py-[10px] h-[50px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[30px] text-[18px] " onClick={handleGenerate}> {states ? (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  ) : (
+    "Generate"
+  )}</div>
           </div>
           <div className="text-[30px] text-[#204e51] flex justify-between  pt-[80px] font-medium max-[1000px]:items-start max-[1000px]:flex-col ">
             <h1>Harvest Season :</h1>

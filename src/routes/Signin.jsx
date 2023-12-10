@@ -12,7 +12,6 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const JWT_SECRET = 'fuegfyefgwrgty9t3ur9giht4toyogytt674'
   const [state, setState] = useState(false)
-  const { userId } = useParams();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
