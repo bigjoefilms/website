@@ -130,7 +130,6 @@ export const Plant = () => {
     };
   return (
     <DashboardLayout>
-        <Topbar/>
       <div className="p-[30px] overflow-scroll ">
         <div className="flex justify-between ]">
           <h1 className="text-[28px] font-medium text-[#204e51]">

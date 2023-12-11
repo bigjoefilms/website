@@ -2,12 +2,13 @@ import React from 'react'
 import Sidebar from '../components/Sidebar'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from "../AuthContext";
+import Topbar from '../components/Topbar';
 
 
 const DashboardLayout = ({children}) => {
   const history = useNavigate();
   const { logout } = useAuth();
-  const JWT_SECRET = 'fuegfyefgwrgty9t3ur9giht4toyogytt674'
+  
 
   const handleLogout = async () => {
    logout()
@@ -21,6 +22,7 @@ const DashboardLayout = ({children}) => {
         <Sidebar handleLogout={handleLogout}/>
       </div>
       <div className="flex-1 flex flex-col overflow-x-scroll ">
+        <Topbar handleLogout={handleLogout}/>
     
         <div className="w-full h-full flex-1 flex-grow  bg-[#F9FAFB]">
           {children}

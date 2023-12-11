@@ -54,12 +54,11 @@ const Dasboard = () => {
   return (
   <DashboardLayout>
     <div className='flex-1 flex flex-col '>
-    <Topbar/>
      <div className="p-[30px] overflow-scroll">
         <h1 className="text-[28px] font-medium text-[#204e51]">
           Your crops Progress
         </h1>
-        <div className="flex gap-7  justify-between max-[1126px]:grid max-[1126px]:grid max-[1126px]:grid-rows-2 max-[1126px]:grid-flow-col max-[500px]:grid-rows-4 w-full">
+        <div className="flex gap-7  justify-between max-[1126px]:grid  max-[1126px]:grid-rows-2 max-[1126px]:grid-flow-col max-[500px]:grid-rows-4 w-full">
           <div className=" bg-[#F7FFDD] h-[150px] w-full  rounded-[20px] p-[25px] mt-[25px] ">
             <p className="font-medium text-[20px]">Rice</p>
             <p className=" text-[20px] mt-[10px]">Benue State</p>
