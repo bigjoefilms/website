@@ -1,10 +1,42 @@
-import React from 'react'
+import React,{useState} from 'react'
 import DashboardLayout from '../layout/DashboardLayout'
 import { Overview } from './Overview';
 import Topbar from '../components/Topbar';
+import nigeriaStates from './nigeriaStates';
 
 
 const Dasboard = () => {
+  const [temperature, setTemperature] = useState(null);
+  const [humidity, setHumidity] = useState(null);
+  const [state, setState] = useState("");
+  const [states, setStates] = useState(false)
+ 
+  const handleGenerate = async () => {
+    try {
+        setStates(true)
+   
+      const response = await fetch(`https://agrolux.onrender.com/weather?state=${state}`);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        console.log(data.temperature)
+        setTemperature(data.temperature)
+        setHumidity(data.humidity)
+      } else {
+        console.error('Failed to fetch weather data');
+      }
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+    }finally{
+        setStates(false)
+      }
+  };
+  const handleLocationChange = (e) => {
+    setState(e.target.value);
+  };
+  
+ 
   
   return (
   <DashboardLayout>
@@ -175,13 +207,29 @@ const Dasboard = () => {
             <svg className="absolute right-0 top-5 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M20.6629 11.2121C21.029 11.5782 21.029 12.1718 20.6629 12.5379L15.6629 17.5379C15.2967 17.904 14.7032 17.904 14.3371 17.5379L9.33708 12.5379C8.97097 12.1718 8.97097 11.5782 9.33708 11.2121C9.7032 10.846 10.2968 10.846 10.6629 11.2121L15 15.5491L19.3371 11.2121C19.7032 10.846 20.2967 10.846 20.6629 11.2121Z" fill="#204E51"/>
 </svg>
-<input type='search' placeholder="Location" className='h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] p-[20px] border-[#204e51]'/>
-
+<select
+        value={state}
+        onChange={handleLocationChange}
+        className="h-[50px] w-full max-w-[400px] border-b-[2px] mt-[8px] px-2 border-[#204e51]"
+      >
+        <option value="" disabled>Select a Location</option>
+        {nigeriaStates.map((location, index) => (
+          <option key={index} value={location}>
+            {location}
+          </option>
+        ))}
+      </select>
 
             </div>
-            <div className="bg-[#204e51] px-[15px] rounded-[20px] py-[10px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[20px] ">Get data</div>
-            <div className="border-[#204e51] border px-[15px] rounded-[20px] py-[10px] items-center justify-center cursor-pointer flex text-[#204e51] gap-3 mt-[20px]">T : <p>37°C</p></div>
-            <div className="border-[#204e51] border px-[15px] rounded-[20px] py-[10px] items-center justify-center cursor-pointer flex text-[#204e51] gap-3 mt-[20px]">H : <p>37°C</p></div>
+            <div className="bg-[#204e51] px-[15px] rounded-[20px] py-[10px] items-center justify-center cursor-pointer flex text-[#ffff] mt-[20px] " onClick={handleGenerate}> {states ? (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  ) : (
+    "Get Data"
+  )}</div>
+            <div className="border-[#204e51] border px-[15px] rounded-[20px] py-[10px] items-center justify-center cursor-pointer flex text-[#204e51] gap-3 mt-[20px]">T : <p>{temperature}°C</p></div>
+            <div className="border-[#204e51] border px-[15px] rounded-[20px] py-[10px] items-center justify-center cursor-pointer flex text-[#204e51] gap-3 mt-[20px]">H : <p>{humidity} %</p></div>
 
 
         </div>
