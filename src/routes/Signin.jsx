@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
-import { CLoadingButton } from '@coreui/react-pro'
-import '../App.css'
-import { useParams } from "react-router-dom";
+import { useAuth } from "../AuthContext";
+
+
+
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const JWT_SECRET = 'fuegfyefgwrgty9t3ur9giht4toyogytt674'
   const [state, setState] = useState(false)
+  const { login } = useAuth();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -36,7 +37,14 @@ const Signin = () => {
       // Assuming successful login results in a response with a token or success flag
       if (response.ok) {
         // Redirect to the dashboard after successful login
+        // const { userId } = await response.json();
+        const userData  = await response.json(); 
+        const userId = userData.userId; // Assuming the token is returned in the response
+      login(userId);
+        
+
         console.log("User signed in successfully!");
+       
         history('/dashboard');
       } else {
         // If response status is not OK, parse the error response

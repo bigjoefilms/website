@@ -1,11 +1,22 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import DashboardLayout from '../layout/DashboardLayout'
-import { Overview } from './Overview';
 import Topbar from '../components/Topbar';
 import nigeriaStates from './nigeriaStates';
-
+import { useAuth } from '../AuthContext';
+import { useNavigate } from 'react-router-dom'; // Import useHistory from React Router
 
 const Dasboard = () => {
+  const { loggedIn } = useAuth();
+  const history = useNavigate();
+
+
+  useEffect(() => {
+    // Check if user is not logged in, then redirect to login page
+    if (!loggedIn) {
+      history('/login'); // Redirect to your login route
+    }
+  }, [loggedIn, history]);
+
   const [temperature, setTemperature] = useState(null);
   const [humidity, setHumidity] = useState(null);
   const [state, setState] = useState("");

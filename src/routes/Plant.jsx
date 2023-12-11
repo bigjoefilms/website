@@ -183,7 +183,7 @@ export const Plant = () => {
           <div className="text-[30px] text-[#204e51] flex justify-between  pt-[80px] font-medium max-[1000px]:items-start max-[1000px]:flex-col ">
             <div>Harvest Season :<h1 className="text-[18px]"><span>{season}</span><br/><span>{timing}</span></h1></div>
 
-            <div className="bg-[#F7FFDD] h-auto  w-[100%] max-w-[400px] rounded-[20px] p-[35px] flex-col flex text-[25px] max-[700px]:mt-[1 0px]">
+            <div className="bg-[#F7FFDD] h-auto  w-[100%] max-w-[400px] rounded-[20px] p-[35px] flex-col flex text-[25px] max-[700px]:mt-[10px]">
               Suggested Crops
               <div className="flex items-center gap-5 mt-[20px]">
               <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
