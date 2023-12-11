@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ handleLogout }) => {
+  
   return (
     <div className=" w-[342px] h-screen p-4 bg-[#204e51] border-r-[1px] flex flex-col relative">
       <div className="">
@@ -49,7 +50,7 @@ const Sidebar = () => {
 
         <div className="flex text-[#ED4129] text-[20px]  cursor-pointer gap-5  absolute bottom-12 flex-col">
           <p className="text-[20px] px-3 cursor-pointer text-white ">Profile</p>
-          <div className=" flex gap-5 items-center">
+          <div className=" flex gap-5 items-center" onClick={handleLogout} >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
