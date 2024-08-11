@@ -36,7 +36,7 @@ export const Plant = () => {
             };
             console.log(data)
 
-            const response = await fetch('https://agrolox-model.onrender.com/season/predict', {
+            const response = await fetch('https://agrolox-models.onrender.com/season/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
