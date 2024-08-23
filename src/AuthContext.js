@@ -23,16 +23,16 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(data.user)); // Save user to localStorage
         setUser(data.user);
         setLoggedIn(true);
-        return true; // Indicate successful login
+        return { success: true }; // Indicate successful login
       } else {
         console.error('Login failed:', data.message);
         setLoggedIn(false);
-        return false; // Indicate failed login
+        return { success: false, message: data.message }; // Indicate failed login
       }
     } catch (error) {
       console.error('Error during login:', error);
       setLoggedIn(false);
-      return false; // Indicate failed login
+      return { success: false, message: 'An unexpected error occurred.' }; // Indicate failed login
     }
   };
 
@@ -51,13 +51,14 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(data.user)); // Save user to localStorage
         setUser(data.user);
         setLoggedIn(true);
+        return { success: true }; // Indicate successful registration
       } else {
         console.error('Registration failed:', data.message);
-        setLoggedIn(false);
+        return { success: false, message: data.message }; // Indicate failed registration
       }
     } catch (error) {
       console.error('Error during registration:', error);
-      setLoggedIn(false);
+      return { success: false, message: 'An unexpected error occurred.' }; // Indicate failed registration
     }
   };
 

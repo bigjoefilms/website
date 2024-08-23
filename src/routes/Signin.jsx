@@ -19,12 +19,12 @@ const Signin = () => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage(""); // Clear previous errors
-    const success = await login(email, password);
+    const { success, message } = await login(email, password);
     setLoading(false);
     if (success) {
       navigate("/dashboard");
     } else {
-      setErrorMessage("Login failed. Invalid Email or Password.");
+      setErrorMessage(message || "Login failed. Invalid Email or Password.");
     }
   };
 
@@ -53,7 +53,7 @@ const Signin = () => {
             className="border border-black rounded-[20px] h-[60px] w-full px-[25px] text-[15px] text-black"
           />
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -100,12 +100,12 @@ const Signin = () => {
                 fill="#204E51"
               />
             </svg>
-            Show Password
+            {showPassword ? "Hide Password" : "Show Password"}
           </p>
         </div>
 
         <p className="text-[15px] font-light">
-          Dont have an account?{" "}
+          Don't have an account?{" "}
           <Link to="/signup">
             <span className="text-[#204e51]">Register</span>
           </Link>
