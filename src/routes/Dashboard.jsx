@@ -5,7 +5,7 @@ import nigeriaStates from './nigeriaStates';
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom'; // Import useHistory from React Router
 
-const Dasboard = () => {
+const Dashboard = () => {
   const { loggedIn } = useAuth();
   const history = useNavigate();
 
@@ -329,4 +329,4 @@ const Dasboard = () => {
   )
 }
 
-export default Dasboard
+export default Dashboard
