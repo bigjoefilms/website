@@ -17,23 +17,23 @@ const Sidebar = ({ handleLogout }) => {
 
         <div className="mt-[40px] text-white">
           <ul className=" flex flex-col gap-1 text-[20px] items-start">
-            <Link to="/overview" className="w-full">
+            {/* <Link to="/overview" className="w-full">
               <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
                 Overview
               </li>
-            </Link>
+            </Link> */}
 
-            <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
+            {/* <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
               Weather forecast
-            </li>
+            </li> */}
             <Link to="/plant" className="w-full">
             <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
-              Plant a crop
+              Precision Agriculture
             </li>
 
             </Link>
            
-            <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
+            {/* <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
               Farm Planning
             </li>
             <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
@@ -44,12 +44,12 @@ const Sidebar = ({ handleLogout }) => {
             </li>
             <li className="cursor-pointer hover:bg-white hover:text-black w-full h-[60px] flex items-center px-3 rounded-[10px]">
               Join the community
-            </li>
+            </li> */}
           </ul>
         </div>
 
         <div className="flex text-[#ED4129] text-[20px]  cursor-pointer gap-5  absolute bottom-12 flex-col">
-          <p className="text-[20px] px-3 cursor-pointer text-white ">Profile</p>
+          {/* <p className="text-[20px] px-3 cursor-pointer text-white ">Profile</p> */}
           <div className=" flex gap-5 items-center" onClick={handleLogout} >
             <svg
               xmlns="http://www.w3.org/2000/svg"

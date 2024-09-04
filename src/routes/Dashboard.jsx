@@ -4,6 +4,7 @@ import Topbar from '../components/Topbar';
 import nigeriaStates from './nigeriaStates';
 import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom'; // Import useHistory from React Router
+import { Plant } from './Plant';
 
 const Dashboard = () => {
   const { loggedIn } = useAuth();
@@ -52,9 +53,8 @@ const Dashboard = () => {
  
   
   return (
-  <DashboardLayout>
     <div className='flex-1 flex flex-col '>
-     <div className="p-[30px] overflow-scroll">
+     {/* <div className="p-[30px] overflow-scroll">
         <h1 className="text-[28px] font-medium text-[#204e51]">
           Your crops Progress
         </h1>
@@ -323,9 +323,10 @@ const Dashboard = () => {
           </div>
           <div className="cursor-pointer">see more</div>
         </div>
+      </div> */}
+
+      <Plant />
       </div>
-      </div>
-  </DashboardLayout>
   )
 }
 

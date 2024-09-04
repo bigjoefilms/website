@@ -36,7 +36,7 @@ const Signin = () => {
         </h1>
       </Link>
 
-      <div className="h-[70%] bg-white w-[100%] max-w-[650px] rounded-[20px] px-[55px] py-[38px] max-md:px-[20px]">
+      <div className="md:h-[80%] bg-white w-[100%] max-w-[650px] rounded-[20px] px-[55px] py-[38px] max-md:px-[20px]">
         <div>
           <h1 className="text-[70px] text-[#204e51] font-semibold max-md:text-[50px]">
             Login
@@ -62,7 +62,7 @@ const Signin = () => {
 
           {loading ? (
             <div className="flex items-center h-[60px] rounded-[20px] text-white bg-[#204E51] justify-center">
-              <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 font-extrabold rounded-full text-[#0c0a0a]" role="status">
+              <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 font-extrabold rounded-full text-[#ffffff]" role="status">
                 <span className="visually-hidden">o</span>
               </div>
             </div>
@@ -76,7 +76,7 @@ const Signin = () => {
           )}
 
           {errorMessage && (
-            <p className="text-red-500 text-center mt-4">{errorMessage}</p>
+            <p className="text-red-500 font-bold md:text-lg mt-[-16px] text-center">{errorMessage}</p>
           )}
         </form>
 
@@ -104,10 +104,10 @@ const Signin = () => {
           </p>
         </div>
 
-        <p className="text-[15px] font-light">
+        <p className="text-[15px] text-lg font-light">
           Don't have an account?{" "}
           <Link to="/signup">
-            <span className="text-[#204e51]">Register</span>
+            <span className="text-[#204e51] font-bold">Register...</span>
           </Link>
         </p>
       </div>

@@ -17,12 +17,12 @@ const Header = () => {
 
         <div className='flex max-[780px]:hidden items-center '>
            
-          <ul className='flex items-center gap-[7rem] pr-[4rem] md:max-lg:gap-[3rem] md:max-lg:pr-[3rem]'>
+          <ul className='flex items-center gap-[3rem] pr-[4rem] md:max-lg:gap-[3rem] md:max-lg:pr-[3rem]'>
             <li className='cursor-pointer'>Home</li>
             <li className='cursor-pointer'>About Us</li>
             <li className='cursor-pointer'>Pricing</li>
           </ul>
-          <div className='flex items-center gap-[4rem] md:max-lg:gap-[1rem]'>
+          <div className='flex items-center gap-[2rem] md:max-lg:gap-[1rem]'>
             <Link to="/login">
               <button className='bg-[#204E51] h-[45px] px-[25px] rounded-[10px] text-[#ffff]'>Login</button>
             </Link>

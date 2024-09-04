@@ -32,7 +32,7 @@ const Signup = () => {
         </h1>
       </Link>
 
-      <div className="h-[70%] bg-white w-[100%] max-w-[650px] rounded-[20px] px-[55px] py-[38px] max-md:px-[20px]">
+      <div className="md:h-[80%] bg-white w-[100%] max-w-[650px] rounded-[20px] px-[55px] py-[32px] max-md:px-[20px]">
         <div>
           <h1 className="text-[70px] text-[#204e51] font-semibold max-md:text-[50px]">
             Sign Up
@@ -71,7 +71,7 @@ const Signup = () => {
             </div>
           ) : (
             <button
-              className="w-full h-[60px] rounded-[20px] text-white bg-[#204e51] text-[20px] flex items-center justify-center my-[15px] cursor-pointer max-md:text-[16px]"
+              className="w-full h-[60px] rounded-[20px] text-white bg-[#204e51] text-[20px] flex items-center justify-center  cursor-pointer max-md:text-[16px]"
               type="submit"
             >
               Sign Up
@@ -79,14 +79,14 @@ const Signup = () => {
           )}
 
           {errorMessage && (
-            <p className="text-red-500 text-center mt-4">{errorMessage}</p>
+            <p className="text-red-500 font-bold sm:text-lg md:mt-[-18px] lg:mt-0 text-center">{errorMessage}</p>
           )}
         </form>
 
-        <p className="text-[15px] font-light">
+        <p className="flex justify-center sm:text-lg px-2 py-1 md:py-2 font-light">
           Already have an account?{' '}
           <Link to="/login">
-            <span className="text-[#204e51]">Login</span>
+            <span className="text-[#204e51] font-bold">Login here..</span>
           </Link>
         </p>
       </div>
